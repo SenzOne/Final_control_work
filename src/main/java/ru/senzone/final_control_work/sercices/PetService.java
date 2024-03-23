@@ -3,23 +3,21 @@ package ru.senzone.final_control_work.sercices;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.senzone.final_control_work.madols.Cat;
-import ru.senzone.final_control_work.madols.Pet;
-import ru.senzone.final_control_work.repositories.PetRepository;
+import ru.senzone.final_control_work.madols.Animal;
+import ru.senzone.final_control_work.repositories.AnimalRepository;
 
 @Service
 @Transactional
 public class PetService {
 
-    PetRepository petRepository;
+    AnimalRepository petRepository;
 
     @Autowired
-    public PetService(PetRepository petRepository) {
+    public PetService(AnimalRepository petRepository) {
         this.petRepository = petRepository;
     }
 
-
-    public void addPet(Cat cat){
-        petRepository.save(cat);
+    public <T extends Animal> void addPet(T animal) {
+        petRepository.save(animal);
     }
 }

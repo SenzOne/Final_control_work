@@ -1,10 +1,8 @@
 package ru.senzone.final_control_work.madols;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
 
-
+@MappedSuperclass
 public abstract class Pet extends Animal {
 
 }

@@ -3,20 +3,21 @@ package ru.senzone.final_control_work.view;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-import ru.senzone.final_control_work.controllers.CatController;
+import ru.senzone.final_control_work.controllers.AnimalController;
 
 @Component
 public class init {
 
     final
-    CatController catController;
+    AnimalController animalController;
 
-    public init(CatController catController) {
-        this.catController = catController;
+    public init(AnimalController catController) {
+        this.animalController = catController;
     }
 
     @PostConstruct
-    public void init() {
-        catController.addPet();
+    public void addAnimals() {
+        animalController.addCat("cat1", "cat");
+        animalController.addDog("dogName", "dog");
     }
 }
