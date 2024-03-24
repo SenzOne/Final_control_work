@@ -1,0 +1,91 @@
+ƒ❯ mkdir final_control_work
+❯ cd final_control_work
+❯ ls
+❯ cat > Pets
+Labrador Retriever
+German Shepherd
+Siamese
+Persian
+Syrian Hamster
+Dwarf Hamster%
+❯ cat > Pack animals
+cat: animals: No such file or directory
+❯ cat > Pack_animals
+horse
+camel
+donkey%
+❯ ls
+Pack  Pack_animals  Pets
+❯ cat Pack
+❯ rm Pack
+❯ ls
+Pack_animals  Pets
+❯ cat Pack_animals Pets > HumanFriends
+❯ ls
+HumanFriends  Pack_animals  Pets
+❯ cat HumanFriends
+horse
+camel
+donkeyLabrador Retriever
+German Shepherd
+Siamese
+Persian
+Syrian Hamster
+Dwarf Hamster%
+❯ nano HumanFriends
+❯ cat HumanFriends
+horse
+camel
+donkey
+Labrador Retriever
+German Shepherd
+Siamese
+Persian
+Syrian Hamster
+Dwarf Hamster
+❯ mkdir NewDir
+❯ mv HumanFriends NewDir
+❯ ls
+NewDir  Pack_animals  Pets
+❯ cd NewDir
+❯ ls
+HumanFriends
+
+
+cd final_control_work
+  589  ls
+  590  cat > Pets
+  591  cat > Pack animals
+  592  cat > Pack_animals
+  593  ls
+  594  cat Pack
+  595  rm Pack
+  596  ls
+  597  cat Pack_animals Pets > HumanFriends
+  598  ls
+  599  cat HumanFriends
+  600  nano HumanFriends
+  601  cat HumanFriends
+  602  mkdir NewDir
+  603  mv HumanFriends NewDir
+  604  ls
+  605  cd NewDir
+  606  ls
+  607  cd //
+  608  ls
+  609  cd ~
+  610  ls
+  611  history
+  612  sudo apt update
+  613  sudo apt install software-properties-common
+  614  lsb_release -a\n
+  615  sudo add-apt-repository 'deb http://repo.mysql.com/apt/ubuntu/ jammy mysql-8.0'\n
+  616  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8C718D3B5072E1F5\n
+  617  sudo add-apt-repository 'deb http://repo.mysql.com/apt/ubuntu/ jammy mysql-8.0'\nsudo apt update\n
+  618  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C\n
+  619  sudo add-apt-repository 'deb http://repo.mysql.com/apt/ubuntu/ jammy mysql-8.0'
+  620  sudo apt update\n
+  621  ls
+  622  sudo dpkg -i virtualbox-7.0_7.0.14-161095\~Ubuntu\~jammy_amd64.deb
+  623  history
+  624  sudo apt remove virtualbox-7.0\n
