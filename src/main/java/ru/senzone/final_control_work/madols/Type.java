@@ -2,6 +2,10 @@ package ru.senzone.final_control_work.madols;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Objects;
+
+
 @Entity
 @Table(name = "types")
 public class Type {
@@ -10,23 +14,19 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
+    @Column(name = "typeName", unique = true)
+    private String typeName;
 
-    @Column(name = "type")
-    private String type;
 
-    @Column(name = "pack_animal")
-    private boolean packAnimal;
+    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+    private List<Animal> animals;
 
-    public Type() {
+    public List<Animal> getAnimals() {
+        return animals;
     }
 
-    public Type(String type, Animal animal, boolean packAnimal) {
-        this.type = type;
-        this.animal = animal;
-        this.packAnimal = packAnimal;
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
     }
 
     public Long getId() {
@@ -37,27 +37,25 @@ public class Type {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public Animal getAnimal() {
-        return animal;
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Type type = (Type) o;
+        return Objects.equals(getId(), type.getId()) && Objects.equals(getTypeName(), type.getTypeName()) && Objects.equals(getAnimals(), type.getAnimals());
     }
 
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
-    }
-
-    public boolean isPackAnimal() {
-        return packAnimal;
-    }
-
-    public void setPackAnimal(boolean packAnimal) {
-        this.packAnimal = packAnimal;
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTypeName(), getAnimals());
     }
 }

@@ -2,6 +2,9 @@ package ru.senzone.final_control_work.madols;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Objects;
+
 @Entity
 @Table(name = "commands")
 public class Command {
@@ -10,18 +13,16 @@ public class Command {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String commandName;
 
-    @ManyToOne
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
+    @ManyToMany(mappedBy = "commands")
+    private List<Animal> animals;
 
     public Command(){}
 
-    public Command(Long id, String commandName, Animal animal) {
-        this.id = id;
+    public Command(String commandName) {
         this.commandName = commandName;
-        this.animal = animal;
     }
 
 
@@ -41,11 +42,29 @@ public class Command {
         this.commandName = commandName;
     }
 
-    public Animal getAnimal() {
-        return animal;
+    public List<Animal> getAnimals() {
+        return animals;
     }
 
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Command command = (Command) o;
+        return Objects.equals(getId(), command.getId()) && Objects.equals(getCommandName(), command.getCommandName()) && Objects.equals(getAnimals(), command.getAnimals());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCommandName(), getAnimals());
+    }
+
+    @Override
+    public String toString() {
+        return "commandName = '" + commandName + '\'';
     }
 }
