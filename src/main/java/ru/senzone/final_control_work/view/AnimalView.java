@@ -6,18 +6,19 @@ import org.springframework.stereotype.Component;
 import ru.senzone.final_control_work.controllers.AnimalController;
 
 @Component
-public class init {
+public class AnimalView {
 
-    final
-    AnimalController animalController;
 
-    public init(AnimalController catController) {
+    private final AnimalController animalController;
+
+    public AnimalView(AnimalController catController) {
         this.animalController = catController;
     }
 
     @PostConstruct
     public void addAnimals() {
-        animalController.addCat("cat1", "cat");
-        animalController.addDog("dogName", "dog");
+        animalController.addAnimal("cat1", "cat");
+        animalController.addAnimal("dogName", "dog");
+        System.out.println(animalController.getAllAnimals());
     }
 }

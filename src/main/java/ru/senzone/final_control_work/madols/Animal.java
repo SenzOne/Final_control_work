@@ -1,23 +1,33 @@
 package ru.senzone.final_control_work.madols;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+import java.util.List;
 
-@MappedSuperclass
-public abstract class Animal {
+@Entity
+@Table(name = "animals")
+public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
-
     private String name;
 
-    private String commands;
+    private int age;
 
+    @OneToMany(mappedBy = "animal")
+    private List<Command> commands;
+
+    @OneToOne(mappedBy = "animal")
+    private Type type;
+
+    public Animal() {
+    }
+
+    public Animal(String type, String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     public Long getId() {
         return id;
@@ -27,13 +37,6 @@ public abstract class Animal {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getName() {
         return name;
@@ -43,11 +46,33 @@ public abstract class Animal {
         this.name = name;
     }
 
-    public String getCommands() {
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public List<Command> getCommands() {
         return commands;
     }
 
-    public void setCommands(String commands) {
+    public void setCommands(List<Command> commands) {
         this.commands = commands;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+               "id=" + id +
+               ", type='" + type + '\'' +
+               ", name='" + name + '\'' +
+               ", age=" + age +
+               '}';
     }
 }
