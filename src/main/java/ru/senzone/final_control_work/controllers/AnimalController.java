@@ -29,4 +29,8 @@ public class AnimalController {
     public Optional<List<Command>> getAnimalCommand(Long id) {
         return animalService.getAnimalCommands(id);
     }
+
+    public void addCommands(Long id, List<String> animalCommands){
+        animalService.addCommands(id, animalCommands);
+    }
 }

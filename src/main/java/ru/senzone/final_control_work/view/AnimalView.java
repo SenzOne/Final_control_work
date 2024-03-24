@@ -106,8 +106,21 @@ public class AnimalView {
     }
 
     private void trainAnimal() {
-        System.out.println("Обучение новым командам...");
+        Scanner scanner = new Scanner(System.in);
+        for (Animal animal : animalController.getAllAnimals()) {
+            System.out.println(animal);
+        }
+
+        System.out.println("Укажи ID животного: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
+
+        System.out.println("Введите команды животного через пробел: ");
+        List<String> commandsStr = Arrays.asList(scanner.nextLine().split(" "));
+
+        animalController.addCommands(id, commandsStr);
     }
+
 
     private void listAnimalsByBirthdate() {
         System.out.println("Список животных по дате рождения:");
