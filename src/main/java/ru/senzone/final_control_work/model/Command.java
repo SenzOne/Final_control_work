@@ -1,4 +1,4 @@
-package ru.senzone.final_control_work.madols;
+package ru.senzone.final_control_work.model;
 
 import jakarta.persistence.*;
 

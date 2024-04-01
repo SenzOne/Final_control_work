@@ -1,9 +1,9 @@
-package ru.senzone.final_control_work.controllers;
+package ru.senzone.final_control_work.controller;
 
 import org.springframework.stereotype.Controller;
-import ru.senzone.final_control_work.madols.Animal;
-import ru.senzone.final_control_work.madols.Command;
-import ru.senzone.final_control_work.sercices.AnimalService;
+import ru.senzone.final_control_work.model.Animal;
+import ru.senzone.final_control_work.model.Command;
+import ru.senzone.final_control_work.service.AnimalService;
 
 
 import java.util.List;
@@ -24,6 +24,10 @@ public class AnimalController {
 
     public List<Animal> getAllAnimals() {
         return animalService.getAnimals();
+    }
+
+    public Long getTotalAnimalCount() {
+        return animalService.getTotalAnimalCount();
     }
 
     public Optional<List<Command>> getAnimalCommand(Long id) {

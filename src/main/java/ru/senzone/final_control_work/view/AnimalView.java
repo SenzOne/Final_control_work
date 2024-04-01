@@ -3,9 +3,9 @@ package ru.senzone.final_control_work.view;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-import ru.senzone.final_control_work.controllers.AnimalController;
-import ru.senzone.final_control_work.madols.Animal;
-import ru.senzone.final_control_work.madols.Command;
+import ru.senzone.final_control_work.controller.AnimalController;
+import ru.senzone.final_control_work.model.Animal;
+import ru.senzone.final_control_work.model.Command;
 
 import java.util.*;
 
@@ -30,6 +30,7 @@ public class AnimalView {
             System.out.println("2. Список команд животного");
             System.out.println("3. Обучение новым командам");
             System.out.println("4. Вывести список животных по дате рождения");
+            System.out.println("5. Вывести общее количество животных");
             System.out.println("0. Выход");
             System.out.print("Выберите действие: ");
 
@@ -37,26 +38,20 @@ public class AnimalView {
             scanner.nextLine();
 
             switch (choice) {
-                case 1:
-                    addAnimal();
-                    break;
-                case 2:
-                    listCommands();
-                    break;
-                case 3:
-                    trainAnimal();
-                    break;
-                case 4:
-                    listAnimalsByBirthdate();
-                    break;
-                case 0:
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Неверный ввод. Попробуйте еще раз.");
+                case 1 -> addAnimal();
+                case 2 -> listCommands();
+                case 3 -> trainAnimal();
+                case 4 -> listAnimalsByBirthdate();
+                case 5 -> showAnimalCount();
+                case 0 -> running = false;
+                default -> System.out.println("Неверный ввод. Попробуйте еще раз.");
             }
         }
         scanner.close();
+    }
+
+    private void showAnimalCount() {
+        System.out.printf("Общее количество животных: %s \n", animalController.getTotalAnimalCount());
     }
 
 
@@ -97,7 +92,7 @@ public class AnimalView {
         Optional<List<Command>> commandListOptional = animalController.getAnimalCommand(id);
         try {
             List<Command> commandList = commandListOptional.orElseThrow();
-            for (Command command: commandList) {
+            for (Command command : commandList) {
                 System.out.println(command);
             }
         } catch (NoSuchElementException e) {
